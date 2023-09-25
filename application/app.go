@@ -7,6 +7,7 @@ import (
 
 	"github.com/gofiber/fiber/v2"
 	"github.com/rs/zerolog/log"
+	"github.com/umardev500/restapi/routes"
 )
 
 type Application struct{}
@@ -14,6 +15,7 @@ type Application struct{}
 func (a *Application) Start(ctx context.Context) error {
 	app := fiber.New()
 	port := os.Getenv("PORT")
+	routes.LoadAllRoutes(app)
 
 	ch := make(chan error, 1)
 	go func() {
