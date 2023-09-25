@@ -3,6 +3,8 @@ package routes
 import (
 	"github.com/gofiber/fiber/v2"
 	"github.com/umardev500/restapi/application/handler"
+	"github.com/umardev500/restapi/config"
+	"github.com/umardev500/store/proto"
 )
 
 func LoadAllRoutes(app *fiber.App) {
@@ -14,6 +16,8 @@ func loadApiRoutes(router fiber.Router) {
 }
 
 func loadProductRoutes(router fiber.Router) {
-	handler := handler.NewProductHandler()
+	conn := config.NewProductRPC()
+	product := proto.NewProductServiceClient(conn)
+	handler := handler.NewProductHandler(product)
 	router.Post("/", handler.Create)
 }

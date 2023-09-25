@@ -6,6 +6,7 @@ require (
 	github.com/gofiber/fiber/v2 v2.49.2
 	github.com/joho/godotenv v1.5.1
 	github.com/rs/zerolog v1.31.0
+	github.com/umardev500/store v0.0.0-00010101000000-000000000000
 	google.golang.org/grpc v1.58.2
 )
 
