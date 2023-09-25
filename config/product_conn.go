@@ -13,8 +13,8 @@ func NewProductRPC() (conn *grpc.ClientConn) {
 	conn, err := grpc.Dial(port, grpc.WithTransportCredentials(insecure.NewCredentials()))
 	if err != nil {
 		log.Fatal().Msg(err.Error())
+		conn.Close()
 	}
-	defer conn.Close()
 
 	return
 }
