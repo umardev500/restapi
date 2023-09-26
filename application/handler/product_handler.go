@@ -3,16 +3,15 @@ package handler
 import (
 	"github.com/gofiber/fiber/v2"
 	"github.com/umardev500/restapi/domain"
-	"github.com/umardev500/store/proto"
 )
 
 type productHandler struct {
-	product proto.ProductServiceClient
+	service domain.ProductService
 }
 
-func NewProductHandler(product proto.ProductServiceClient) domain.ProductHanlder {
+func NewProductHandler(service domain.ProductService) domain.ProductHanlder {
 	return &productHandler{
-		product: product,
+		service: service,
 	}
 }
 
