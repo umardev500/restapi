@@ -24,10 +24,9 @@ func (ps *productService) CreateProduct(ctx context.Context, product model.Produ
 			Name:        product.Name,
 			Description: product.Description,
 			Price:       product.Price,
-			ImageUrls:   product.Images,
+			Images:      product.Images,
 		},
 	}
-
 	err := ps.repo.Create(ctx, p)
 	if err != nil {
 		return err
