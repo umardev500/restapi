@@ -7,7 +7,6 @@ import (
 	"github.com/gofiber/fiber/v2"
 	"github.com/umardev500/restapi/domain"
 	"github.com/umardev500/restapi/domain/model"
-	"github.com/umardev500/store/proto"
 )
 
 type productHandler struct {
@@ -28,14 +27,7 @@ func (ph *productHandler) Create(c *fiber.Ctx) error {
 
 	ctx, cancel := context.WithTimeout(context.Background(), 10*time.Second)
 	defer cancel()
-	err := ph.service.CreateProduct(ctx, &proto.CreateProductRequest{
-		Product: &proto.ProductCreate{
-			Name:        product.Name,
-			Description: product.Description,
-			Price:       product.Price,
-			ImageUrls:   product.Images,
-		},
-	})
+	err := ph.service.CreateProduct(ctx, *product)
 	if err != nil {
 		return c.JSON(err.Error())
 	}
