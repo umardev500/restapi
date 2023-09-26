@@ -9,8 +9,8 @@ import (
 )
 
 func NewProductRPC() (conn *grpc.ClientConn) {
-	port := os.Getenv("PRODUCT_PORT")
-	conn, err := grpc.Dial(port, grpc.WithTransportCredentials(insecure.NewCredentials()))
+	host := os.Getenv("PRODUCT_HOST")
+	conn, err := grpc.Dial(host, grpc.WithTransportCredentials(insecure.NewCredentials()))
 	if err != nil {
 		log.Fatal().Msg(err.Error())
 		conn.Close()

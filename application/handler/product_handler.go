@@ -17,5 +17,5 @@ func NewProductHandler(product proto.ProductServiceClient) domain.ProductHanlder
 }
 
 func (ph *productHandler) Create(c *fiber.Ctx) error {
-	return nil
+	return c.SendStatus(fiber.StatusOK)
 }

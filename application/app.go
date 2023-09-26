@@ -6,6 +6,7 @@ import (
 	"time"
 
 	"github.com/gofiber/fiber/v2"
+	"github.com/gofiber/fiber/v2/middleware/logger"
 	"github.com/rs/zerolog/log"
 	"github.com/umardev500/restapi/routes"
 )
@@ -14,6 +15,9 @@ type Application struct{}
 
 func (a *Application) Start(ctx context.Context) error {
 	app := fiber.New()
+	app.Use(logger.New(logger.Config{
+		Format: "[${time}] ${status} - ${method} ${path}\n",
+	}))
 	port := os.Getenv("PORT")
 	routes.LoadAllRoutes(app)
 
