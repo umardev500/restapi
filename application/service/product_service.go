@@ -20,7 +20,7 @@ func NewProductService(repo domain.ProductRepository) domain.ProductService {
 
 func (ps *productService) CreateProduct(ctx context.Context, product model.ProductStore) error {
 	var p *proto.CreateProductRequest = &proto.CreateProductRequest{
-		Product: &proto.ProductCreate{
+		Product: &proto.Product{
 			Name:        product.Name,
 			Description: product.Description,
 			Price:       product.Price,
