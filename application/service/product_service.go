@@ -24,6 +24,7 @@ func (ps *productService) CreateProduct(ctx context.Context, product model.Produ
 			Name:        product.Name,
 			Description: product.Description,
 			Price:       product.Price,
+			Stock:       product.Stock,
 			Images:      product.Images,
 		},
 	}
