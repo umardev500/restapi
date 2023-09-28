@@ -25,10 +25,13 @@ func NewProductHandler(service domain.ProductService, validator *validator.Valid
 func (ph *productHandler) Create(c *fiber.Ctx) error {
 	var product *model.ProductStore = new(model.ProductStore)
 	if err := c.BodyParser(product); err != nil {
-		return err
+		return c.SendStatus(fiber.StatusBadRequest)
 	}
 
 	// validate the struct
+	if err := ph.validator.Struct(product); err != nil {
+		return c.SendStatus(fiber.StatusUnprocessableEntity)
+	}
 
 	ctx, cancel := context.WithTimeout(context.Background(), 10*time.Second)
 	defer cancel()
